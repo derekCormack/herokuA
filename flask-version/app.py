@@ -7,16 +7,18 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 
+  
+
 @app.route("/index")
 def index():
-       return'<h1>Heroku Deploy<h1>'
+       return'<h1>Heroku Deploy Oh Yeah nil<h1>'
 
 if __name__ == '__main__':
               app.run(debug=True)
 
 @app.route("/")
 def hello():
-    return "Hello, World after holidays!"
+    return "Hello, World after heroku deploy!"
 
 @app.route("/hello/<name>")
 def hello2(name):
