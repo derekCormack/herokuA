@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <table>
+        <tr>
+            <th>invoice_id</th>
+            <th>customer_id</th>
+            <th>date</th>            
+        </tr>
+        {% for rownum,item in invoice.items() %}
+        <tr>
+            <td>{{ rownum }}</td>
+            <td>{{ item['customer_id'] }}</td>
+            <td>{{ item['date'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

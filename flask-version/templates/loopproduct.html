@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <table>
+        <tr>
+            <th>product_id</th>
+            <th>product_name</th>
+            <th>wieght</th>
+            <th>price</th>
+        </tr>
+        {% for rownum,product in products.items() %}
+        <tr>
+            <td>{{ rownum }}</td>
+            <td>{{ product['product_name'] }}</td>
+            <td>{{ product['wieght'] }}</td>
+            <td>{{ product['price'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

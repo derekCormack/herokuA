@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <table>
+        <tr>
+            <th>item_sold_id</th>
+            <th>invoice_id</th>
+            <th>product_id</th>
+            <th>quantity_sold</th>
+        </tr>
+        {% for rownum,item in itemsold.items() %}
+        <tr>
+            <td>{{ rownum }}</td>
+            <td>{{ item['invoice_id'] }}</td>
+            <td>{{ item['product_id'] }}</td>
+            <td>{{ item['quantity_sold'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
