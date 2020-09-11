@@ -1,5 +1,5 @@
 # import openpyxl
-from openpyxl import load_workbook
+# from openpyxl import load_workbook
 from data_xl import customer_call, invoice_call,itemsold_call,product_call, loopdahdata_call
 from flask import (Flask, jsonify, render_template)
 from flask_cors import CORS
