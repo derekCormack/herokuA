@@ -5,3 +5,6 @@ itsdangerous==1.1.0
 Jinja2==2.11.2
 MarkupSafe==1.1.1
 Werkzeug==1.0.1
+openpyxl==3.0.3
+Django==3.1.1
+django-heroku==0.3.1

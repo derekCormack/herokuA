@@ -11,7 +11,7 @@ CORS(app, supports_credentials=True)
 @app.route("/")
 @app.route("/index")
 def index():
-       return'<h1>Heroku Deploy update<h1>'
+       return'<h1>Heroku Deploy local test?<h1>'
 
 if __name__ == '__main__':
               app.run(debug=True)
