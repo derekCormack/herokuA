@@ -4,6 +4,7 @@ from data_xl import customer_call, invoice_call,itemsold_call,product_call, loop
 from flask import (Flask, jsonify, render_template)
 from flask_cors import CORS
 
+app.run(host= '0.0.0.0')
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 
@@ -114,6 +115,6 @@ def dumploopinvoice():
 
 if __name__ == '__main__':
 	print("--- Starting", __file__)
-	app.run(debug=True, use_reloader=True)
+	app.run(debug=False, use_reloader=True)
 
     #if this is being executed then start flask, start in debug.
