@@ -14,8 +14,13 @@ CORS(app, supports_credentials=True)
 def index():
        return'<h1>Heroku Deploy local test?<h1>'
 
+# if __name__ == '__main__':
+#               app.run(debug=True)
 if __name__ == '__main__':
-              app.run(debug=True)
+	print("--- Starting", __file__)
+	app.run(debug=False, use_reloader=False, host='0.0.0.0')
+
+
 
 @app.route("/hello/<name>")
 def hello2(name):
@@ -89,9 +94,7 @@ def dumploopinvoice():
        app.logger.debug(data)
        return render_template("loopinvoice.html", invoice=data)
 
-if __name__ == '__main__':
-	print("--- Starting", __file__)
-	app.run(debug=False, use_reloader=False, host='0.0.0.0')
+
 
 
 
