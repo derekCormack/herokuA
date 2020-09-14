@@ -21,7 +21,9 @@ if __name__ == '__main__':
 	print("--- Starting", __file__)
 	app.run(debug=False, use_reloader=False, host='0.0.0.0')
 
-
+@app.route("/d")
+def d():
+    return '<h1>  ****  D  endpoint***** <h1>'
 
 @app.route("/hello/<name>")
 def hello2(name):
@@ -29,7 +31,7 @@ def hello2(name):
 
 @app.route('/plain')
 def plain():
-    return render_template("index.html", data="Many many dinasouras.")
+       return render_template("index.html", data="Many many dinasouras.")
 
 @app.route('/dump/customer')
 def dumpcustomer():
