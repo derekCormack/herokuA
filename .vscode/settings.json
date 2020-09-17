@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\Five\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "python.pythonPath": "C:\\Users\\Five\\.virtualenvs\\python101-FJ8xPtg6\\Scripts\\python.exe",
     "python.formatting.provider": "black"
 }

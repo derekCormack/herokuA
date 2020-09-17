@@ -38,10 +38,8 @@ def invoice_call():
 itemsold_sheet = wb["itemsold"] 
 itemsold={}
 
-
-
 def itemsold_call():
-      for row in itemsold_sheet.iter_rows(min_row=2,min_col=0,values_only=True):
+      for row in itemsold_sheet.iter_rows(min_row=2,min_col=0,values_only=True, max_row=31):
             items_sold_id = row[0]
             item = {
                         "invoice_id": row[1],
@@ -68,8 +66,6 @@ def loopdahdata_call(dicte):
       for x,y in dicte:
             return y
            
-            
-
 # print('Enter your invoice#')
 
 # x = int(input())

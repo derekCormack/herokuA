@@ -1,41 +1,24 @@
 import openpyxl
 from openpyxl import load_workbook
-from data_xl import customer_call, invoice_call,itemsold_call,product_call, loopdahdata_call
+from data_xl import customer_call, invoice_call, itemsold_call, product_call, loopdahdata_call
 from flask import (Flask, jsonify, render_template)
 from flask_cors import CORS
-
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 
-  
+
 @app.route("/")
+def home():
+       return 'HOME endpoint / '
+
 @app.route("/index")
 def index():
        return'<h1>Heroku Deploy local test?<h1>'
 
-# if __name__ == '__main__':
-#               app.run(debug=True)
-
-if __name__ == '__main__':
-	print("--- Starting", __file__)
-	app.run(debug=False, use_reloader=False, host='0.0.0.0')
-
-@app.route("/d")
-def d():
-    return '<h1>  ****  D  endpoint***** <h1>'
-
-@app.route("/hello/<name>")
-def hello2(name):
-    return render_template("hello.html", name=name)
-
-@app.route('/plain')
-def plain():
-       return render_template("index.html", data="Many many dinasouras.")
-
-@app.route('/dump/customer')
-def dumpcustomer():
-     return render_template("dump.html", customer=customer_call())
+# @app.route("/index/<string:number_id>")
+# def numberprint(number_id)
+#        return 'This is endpoint index number : ' +  number_id 
 
 @app.route("/json/customer", methods = ['POST','GET'])
 def jsoncustomer():
@@ -43,35 +26,43 @@ def jsoncustomer():
        print(data)
        return jsonify(data), 200
 
-@app.route('/dump/invoice')
-def dumpinvoice():
-       return render_template("dump.html", customer=invoice_call())
-
 @app.route("/json/invoice", methods = ['POST','GET'])
 def jsoninvoice():
        data=invoice_call()
        print(data)
        return jsonify(data), 200
 
-@app.route('/dump/itemsold')
-def dumpitemsold():
-       return render_template("dump.html", customer=itemsold_call())
-
-@app.route("/json/itemsold", methods = ['POST','GET'])
-def jsonitemsold():
-       data=itemsold_call()
-       print(data)
-       return jsonify(data), 200
-
-@app.route('/dump/product')
-def dumpproduct():
-       return render_template("dump.html", customer=product_call())
-
 @app.route("/json/product", methods = ['POST','GET'])
 def jsonproduct():
        data=product_call()
        print(data)
        return jsonify(data), 200
+ 
+@app.route("/json/itemsold", methods = ['POST','GET'])
+def jsonitemsold():
+       data=itemsold_call()
+       # print(data)
+       return jsonify(data), 200
+
+@app.route("/hello/<name>")
+def hello2(name):
+    return render_template("hello.html", name=name)
+
+@app.route('/dump/customer')
+def dumpcustomer():
+     return render_template("dump.html", customer=customer_call())
+
+@app.route('/dump/invoice')
+def dumpinvoice():
+       return render_template("dump.html", customer=invoice_call())
+
+@app.route('/dump/itemsold')
+def dumpitemsold():
+       return render_template("dump.html", customer=itemsold_call())
+
+@app.route('/dump/product')
+def dumpproduct():
+       return render_template("dump.html", customer=product_call())
 
 @app.route('/loop/product')
 def dumploopproduct():
@@ -97,7 +88,19 @@ def dumploopinvoice():
        app.logger.debug(data)
        return render_template("loopinvoice.html", invoice=data)
 
+if __name__ == '__main__':
+              app.run(debug=True, use_reloader=True, host='0.0.0.0', port=5000)
+# debug=False, use_reload=False, host='0.0.0.0', port=5000
+# setup webhserver to "reverse proxy" to the Flask app
+ 
 
+
+
+
+
+# if __name__ == '__main__':
+# 	print("--- Starting", __file__)
+# 	app.run(debug=False, use_reloader=False, host='0.0.0.0')
 
 
 

@@ -2,20 +2,32 @@ import React from 'react';
 
 
 function Products(props) {
-    let newdata=[]
+    const productArray =[];
+    let keyCounter = 0;
     for(const row in props.data) {
-        let x=row
-        newdata.push(x, props.data[x].product_name, props.data[x].wieght, props.data[x].price)
+      keyCounter+=1;
+      let cust={
+        key:keyCounter,
+        data : row,
+        dict : props.data[row],
+        alldata : props.data
+      }
+      productArray.push(cust)
     }; 
 
+    let product_object =  (<div>
+        {productArray.map((product, index) => (
+    <div  key ={index}> Product price: #{product.dict.price}, product name {product.dict.product_name}, weight {product.dict.wieght} </div>
     
+     ))}
+    </div>);
+
+  
 return (
     <p>
-        Hello from products 
-        {props.data[1].product_name}
-        {props.data[1].wieght}
-        {props.data[1].price}<br/>
-        {newdata}
+        Product table:
+        
+        {product_object}
     </p>
 );
 }
