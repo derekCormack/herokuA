@@ -21,10 +21,10 @@ function Products(props) {
     let product_object =  (<div>
         {productArray.map((product, index) => (
     <tr  key ={index}> 
-    <td>{product.key}</td>
-    <td> {product.dict.price}</td>
-    <td>{product.dict.product_name}</td>
-    <td> {product.dict.wieght} </td>
+      <td>{product.key}</td>
+      <td> {product.dict.price}</td>
+      <td>{product.dict.product_name}</td>
+      <td> {product.dict.wieght} </td>
     </tr>
      ))}
     </div>);
@@ -32,9 +32,12 @@ function Products(props) {
   
 return (
     <div>
-        Product table:
-        
-        {product_object}
+        <h1 id='title'>Product table</h1>
+        <table id='invoice'>
+          <tbody>
+            <tr>{product_object}</tr>
+          </tbody>
+        </table>
     </div>
 );
 }
