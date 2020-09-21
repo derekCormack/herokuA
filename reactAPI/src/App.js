@@ -87,14 +87,14 @@ render() {
         </h1>
         
         <div>
-             <h2>Table of customer information.</h2><br/>
+             <h2>Tables of customer information.</h2><br/>
         </div>
     
         <Invoices
           data={invoicedata}
           entry={1}
         /><br/>
-{/* {cust_object} */}
+
         <Products
           data={productdata}    
         /><br/>

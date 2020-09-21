@@ -1,12 +1,7 @@
 import React from 'react';
-
+import styles from './table.module.css';
 
 function Invoices(props) {
-    // let newdata=[]
-    // for(const row in props.data) {
-    //     let x=row
-    //     newdata.push(x, props.data[x].product_name, props.data[x].wieght, props.data[x].price)
-    // }; 
     const InvoiceArray =[];
     let keyCounter = 0;
     for(const row in props.data) {
@@ -22,27 +17,26 @@ function Invoices(props) {
     }
     }; 
 
-    let inv_object =  (<div>
+    let inv_object =  (<tbody>
+        <td>Invoice ID</td><td>Customer ID</td><td>Date</td>
         {InvoiceArray.map((invoice, index) => (
-    <p  key ={index}>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{invoice.key}
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{invoice.dict.customer_id}
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{invoice.dict.date}
-    </p>
-    
+          <tr  key ={index}> 
+            <td>{invoice.key}</td>
+            <td>{invoice.dict.customer_id}</td>
+            <td>{invoice.dict.date}</td>
+          </tr>
      ))}
-    </div>);
+    </tbody>);
 
 // let entry=props.entry    
 return (
     <div>
-        {/* Invoice {entry} Customer Id = 
-        {props.data[entry].customer_id}, date = {props.data[entry].date}
-        <br/> */}
-        {/* {newdata} */}
-        {/* {invoice_object} */}
-         INVOICE ID.....CUSTOMER..........................DATE.......................
-{inv_object}
+       <h1 id='title'>Invoices</h1>
+        <div className={styles.students}>
+          <table >
+            {inv_object}
+          </table>
+        </div>
     </div>
 );
 }

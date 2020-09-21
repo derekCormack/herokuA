@@ -1,5 +1,5 @@
 import React from 'react';
-
+import styles from './table.module.css';
 
 function Products(props) {
     const productArray =[];
@@ -16,30 +16,85 @@ function Products(props) {
         productArray.push(cust)
       }
     }; 
-    console.log(props.data)  
-    console.log(productArray)
-    let product_object =  (<div>
+    // console.log(props.data)  
+    // console.log(productArray)
+    let product_object =  (<tbody>
+      <td>Product ID</td><td>  Price</td><td>Product Name</td><td>Wieght</td>
         {productArray.map((product, index) => (
-    <tr  key ={index}> 
-      <td>{product.key}</td>
-      <td> {product.dict.price}</td>
-      <td>{product.dict.product_name}</td>
-      <td> {product.dict.wieght} </td>
-    </tr>
+          <tr  key ={index}> 
+            <td>{product.key}</td>
+            <td> {product.dict.price}</td>
+            <td>{product.dict.product_name}</td>
+            <td> {product.dict.wieght} </td>
+          </tr>
      ))}
-    </div>);
+    </tbody>);
 
   
 return (
-    <div>
-        <h1 id='title'>Product table</h1>
-        <table id='invoice'>
-          <tbody>
-            <tr>{product_object}</tr>
-          </tbody>
-        </table>
+    <div >
+        <h1 id='title'>Products</h1>
+        <div className={styles.students}>
+          <table >
+             {product_object}
+          </table>
+        </div>
     </div>
 );
 }
 
 export default Products;
+
+
+
+// example:
+// class Table extends React.Component {
+//   constructor(props) {
+//      super(props)
+//      this.state = {
+//         students: [
+//            { id: 1, name: 'Wasif', age: 21, email: 'wasif@email.com' },
+//            { id: 2, name: 'Ali', age: 19, email: 'ali@email.com' },
+//            { id: 3, name: 'Saad', age: 16, email: 'saad@email.com' },
+//            { id: 4, name: 'Asad', age: 25, email: 'asad@email.com' }
+//         ]
+//      }
+//   }
+
+//   renderTableHeader() {
+//      let header = Object.keys(this.state.students[0])
+//      return header.map((key, index) => {
+//         return <th key={index}>{key.toUpperCase()}</th>
+//      })
+//   }
+
+//   renderTableData() {
+//      return this.state.students.map((student, index) => {
+//         const { id, name, age, email } = student //destructuring
+//         return (
+//            <tr key={id}>
+//               <td>{id}</td>
+//               <td>{name}</td>
+//               <td>{age}</td>
+//               <td>{email}</td>
+//            </tr>
+//         )
+//      })
+//   }
+
+//   render() {
+//      return (
+//         <div>
+//            <h1 id='title'>React Dynamic Table</h1>
+//            <table id='students'>
+//               <tbody>
+//                  <tr>{this.renderTableHeader()}</tr>
+//                  {this.renderTableData()}
+//               </tbody>
+//            </table>
+//         </div>
+//      )
+//   }
+// }
+
+// ReactDOM.render(<Table />, document.getElementById('root'));

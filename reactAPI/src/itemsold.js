@@ -1,5 +1,5 @@
 import React from 'react';
-
+import styles from './table.module.css';
 
 function Invoices(props) {
    
@@ -18,19 +18,27 @@ function Invoices(props) {
       }
     }; 
 
-    let item_object =  (<div>
+    let item_object =  (<tbody>
+      <td>Item ID</td><td>  Invoice ID</td><td>Product ID</td><td>Amount Sold</td>
         {ItemsoldArray.map((item, index) => (
-    <div  key ={index}> Item ID: {item.key}, Invoice Id: #{item.dict.invoice_id}, product Id #{item.dict.product_id}, amount sold {item.dict.quantity_sold} </div>
-    
+        <tr  key ={index}> 
+          <td>{item.key}</td>
+          <td> {item.dict.invoice_id}</td>
+          <td>{item.dict.product_id}</td>
+          <td>{item.dict.quantity_sold}</td>
+        </tr>
      ))}
-    </div>);
+    </tbody>);
 
   
 return (
     <div>
-        Item Sold table:
-        
-        {item_object}
+        <h1 id='title'> Items Sold</h1>
+        <div className={styles.students}>
+          <table >
+               {item_object}
+          </table>
+        </div>
     </div>
 );
 }

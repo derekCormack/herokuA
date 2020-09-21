@@ -1,5 +1,5 @@
 import React from 'react';
-
+import styles from './table.module.css';
 
 function Customers(props) {
     const CustomerArray =[];
@@ -17,20 +17,29 @@ function Customers(props) {
       }
     }; 
 
-console.log(CustomerArray)
-    let cust_object =  (<div>
-        {CustomerArray.map((customer, index) => (
-    <div  key ={index}> Customer ID: {customer.key}, Address: {customer.dict.address}, email {customer.dict.email}, name {customer.dict.name} </div>
-    
+// console.log(CustomerArray)
+    let cust_object =  (<tbody>
+     <td>Customer ID</td><td>  Address</td><td>Email</td><td>Customer Name</td>        
+     {CustomerArray.map((customer, index) => (
+
+    <tr  key ={index}> 
+      <td>{customer.key}</td>
+      <td>{customer.dict.address}</td>
+      <td>{customer.dict.email}</td>
+      <td>{customer.dict.name}</td>
+    </tr>
      ))}
-    </div>);
+  </tbody>);
 
   
 return (
     <div>
-        Customer table:
-        
-        {cust_object}
+        <h1 id='title'>Customers</h1>
+        <div className={styles.students}>
+          <table >
+               {cust_object}
+          </table>
+        </div>
     </div>
 );
 }
