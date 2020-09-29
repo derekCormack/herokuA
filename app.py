@@ -3,10 +3,29 @@ from openpyxl import load_workbook
 from data_xl import customer_call, invoice_call, itemsold_call, product_call, loopdahdata_call
 from flask import (Flask, jsonify, render_template)
 from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ywlpicmiptrres:f142823196b7ee397d5ba35381b8ece85fd8717e025420f3f338a16466730b9b@ec2-23-23-36-227.compute-1.amazonaws.com:5432/ddmh0o5t51m950'
 CORS(app, supports_credentials=True)
 
+db = SQLAlchemy(app)
+
+# SECRET_KEY = os.environ.get('f243tg24hg4545')
+# SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+# This link is what you need.
+# https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/#a-minimal-application
+# You can do it in a shell, or in a route; but you need to create models so that Python knows how to access you database queries.
+# Gtg. See you soon!
+
+class TestTable(db.Model):
+       first_col = db.Column(db.Integer, primary_key=True)
+
+@app.route('/dbtest')
+def dbtest():
+
+       return "Hello world!"
 
 @app.route("/")
 def home():
