@@ -19,16 +19,29 @@ db = SQLAlchemy(app)
 # You can do it in a shell, or in a route; but you need to create models so that Python knows how to access you database queries.
 # Gtg. See you soon!
 
-class TestTable(db.Model):
-       first_col = db.Column(db.Integer, primary_key=True)
+# class TestTable(db.Model):
+#        first_col = db.Column(db.Integer, primary_key=True)
+
+class Clients(db.Model):
+       customer_id = db.Column(db.Integer, primary_key=True)
+       name = db.Column(db.String(120), primary_key=False) 
+       address = db.Column(db.Integer, primary_key=False)
+       email = db.Column(db.String(120), primary_key=False)
+C=Clients()
+
+print("hello @@@@@@@@@@@@")
+
+print("Printing name:",C.name)
+
 
 @app.route('/dbtest')
 def dbtest():
 
-       return "Hello world!"
+       return  "hello @@@@@@@@@@@@"
 
 @app.route("/")
 def home():
+       print("hello from print")
        return 'HOME endpoint / '
 
 @app.route("/index")
