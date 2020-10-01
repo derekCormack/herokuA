@@ -31,7 +31,8 @@ C=Clients()
 
 print("hello @@@@@@@@@@@@")
 
-print("Printing name:",C.name)
+# get first name
+print("Printing name: ",C.query.all()[0].name)
 
 
 @app.route('/dbtest')
@@ -108,9 +109,13 @@ def dumploopitemsold():
        app.logger.debug(data)
        return render_template("loopitemsold.html", itemsold=data)
 
+@app.route('/customer/<id>')
+def customer_info(id):
+       return render_template("single_customer.html", data=Clients.query.filter_by(customer_id=id)[0])
+
 @app.route('/loop/customer')
 def dumploopcustomer():
-       data = customer_call()
+       data = list(Clients.query.all())
        app.logger.debug(data)
        return render_template("loopcustomer.html", customer=data)
 

@@ -8,12 +8,12 @@
             <th>address</th>
             <th>email</th>
         </tr>
-        {% for rownum,item in customer.items() %}
+        {% for client in customer %}
         <tr>
-            <td>{{ rownum }}</td>
-            <td>{{ item['name'] }}</td>
-            <td>{{ item['address'] }}</td>
-            <td>{{ item['email'] }}</td>
+            <td>{{ client['customer_id'] }}</td>
+            <td>{{ client['name'] }}</td>
+            <td>{{ client['address'] }}</td>
+            <td>{{ client['email'] }}</td>
         </tr>
         {% endfor %}
     </table>
