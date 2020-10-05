@@ -36,61 +36,12 @@ class Clients(db.Model):
                      'email': self.email
               }
 C=Clients()
- 
-class Invoices(db.Model):
-       invoice_id = db.Column(db.Integer, primary_key=True)
-       customer_id = db.Column(db.Integer, primary_key=True)
-       date = db.Column(db.String(120), primary_key=False) 
-       def toDict(self):
-              return {
-                     'invoice_id': self.invoice_id,
-                     'customer_id': self.customer_id,
-                     'date': self.date,
-               }
-I=Invoices()
 
-class Itemsold(db.Model):
-       items_sold_id = db.Column(db.Integer, primary_key=True)
-       invoice_id = db.Column(db.Integer, primary_key=True)
-       product_id = db.Column(db.Integer, primary_key=True)
-       quantity_sold= db.Column(db.Integer, primary_key=True)
-       def toDict(self):
-              return {
-                     'items_sold_id': self.items_sold_id,
-                     'invoice_id': self.invoice_id,
-                     'product_id': self.product_id,
-                     'quantity_sold': self.quantity_sold,
-               }
-IS=Itemsold()
-
-class Productlist(db.Model):
-       product_id = db.Column(db.Integer, primary_key=True)
-       product_name = db.Column(db.String(120), primary_key=False) 
-       wieght = db.Column(db.Float(4), primary_key=False)    
-       price = db.Column(db.Float(4), primary_key=False)
-       def toDict(self):
-              return {
-                     'product_id': self.product_id,
-                     'product_name': self.product_name,
-                     'wieght': self.wieght,
-                     'price': self.price
-                     }
-P=Productlist()
-
-# from app import app
-# from flask import render_template
-
-# @app.route('/')
-# def home():
-#   return render_template('main.html', title="Home", content="Hello, World!") 
+print("hello @@@@@@@@@@@@")
 
 # get first name
 print("Printing name: ",C.query.all()[0].name)
 
-@app.route('/react')
-def reactPage():
-
-       return render_template('index.js', title="Home")
 
 @app.route('/dbtest')
 def dbtest():
@@ -100,7 +51,7 @@ def dbtest():
 @app.route("/")
 def home():
        print("hello from print")
-       return 'HOME endpoint // '
+       return 'HOME endpoint / '
 
 @app.route("/index")
 def index():
@@ -111,27 +62,10 @@ def index():
 #        return 'This is endpoint index number : ' +  number_id 
 
 @app.route('/db/json/customer')
-def jsonfromdbcust():
+def jsonfromdb():
+       # this line
        data = [x.toDict() for x in C.query.all()]
        return jsonify(data)
-
-@app.route('/db/json/invoices')
-def jsonfromdbinv():
-       data = [x.toDict() for x in I.query.all()]
-       return jsonify(data)
-
-@app.route('/db/json/itemsold')
-def jsonfromdbitem():
-       data = [x.toDict() for x in IS.query.all()]
-       return jsonify(data)
-
-@app.route('/db/json/productlist')
-def jsonfromdbprod():
-       data = [x.toDict() for x in P.query.all()]
-       return jsonify(data)
-
-
-
 
 @app.route("/json/customer", methods = ['POST','GET'])
 def jsoncustomer():
