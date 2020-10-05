@@ -4,6 +4,7 @@ from data_xl import customer_call, invoice_call, itemsold_call, product_call, lo
 from flask import (Flask, jsonify, render_template)
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+import json
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ywlpicmiptrres:f142823196b7ee397d5ba35381b8ece85fd8717e025420f3f338a16466730b9b@ec2-23-23-36-227.compute-1.amazonaws.com:5432/ddmh0o5t51m950'
@@ -27,6 +28,13 @@ class Clients(db.Model):
        name = db.Column(db.String(120), primary_key=False) 
        address = db.Column(db.Integer, primary_key=False)
        email = db.Column(db.String(120), primary_key=False)
+       def toDict(self):
+              return {
+                     'customer_id': self.customer_id,
+                     'name': self.name,
+                     'address': self.address,
+                     'email': self.email
+              }
 C=Clients()
 
 print("hello @@@@@@@@@@@@")
@@ -52,6 +60,12 @@ def index():
 # @app.route("/index/<string:number_id>")
 # def numberprint(number_id)
 #        return 'This is endpoint index number : ' +  number_id 
+
+@app.route('/db/json/customer')
+def jsonfromdb():
+       # this line
+       data = [x.toDict() for x in C.query.all()]
+       return jsonify(data)
 
 @app.route("/json/customer", methods = ['POST','GET'])
 def jsoncustomer():
