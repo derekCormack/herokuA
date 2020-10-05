@@ -67,14 +67,14 @@ class Productlist(db.Model):
        product_id = db.Column(db.Integer, primary_key=True)
        product_name = db.Column(db.String(120), primary_key=False) 
        wieght = db.Column(db.Float(24), primary_key=False)    
-       # price = db.Column(db.float(24), primary_key=False)
+       price = db.Column(db.Integer, primary_key=False)
        def toDict(self):
               return {
                      'product_id': self.product_id,
                      'product_name': self.product_name,
                      'wieght': self.wieght,
-                     # 'price': self.price
-              }
+                     'price': self.price
+               }
 PR=Productlist()
 
 # from app import app
