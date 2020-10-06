@@ -6,7 +6,7 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import json
 
-app = Flask(__name__, static_folder='reactAPI/public')
+app = Flask(__name__, static_folder='reactAPI/static')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ywlpicmiptrres:f142823196b7ee397d5ba35381b8ece85fd8717e025420f3f338a16466730b9b@ec2-23-23-36-227.compute-1.amazonaws.com:5432/ddmh0o5t51m950'
 CORS(app, supports_credentials=True)
 
