@@ -12,6 +12,7 @@ CORS(app, supports_credentials=True)
 
 db = SQLAlchemy(app)
 
+#alksdjf;asdjf;a
 # SECRET_KEY = os.environ.get('f243tg24hg4545')
 # SQLALCHEMY_TRACK_MODIFICATIONS = False
 
