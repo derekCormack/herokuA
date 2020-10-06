@@ -109,7 +109,6 @@ PR=Productlist()
 def main():
        return render_template('index.html', title="Home", content="Hello, World!") 
 
-
 @app.route('/react')
 def reactPage():
        return render_template('index.html', title="Home")
@@ -153,7 +152,8 @@ def jsonfromdbprod():
 #        return jsonify(data), 200
 
 if __name__ == '__main__':
-              app.run(use_reloader=True, port=5000, threaded=True)
+              app.run()
+              #  app.run(use_reloader=True, port=5000, threaded=True)
               # app.run(debug=True, use_reloader=True, host='0.0.0.0', port=5000)
 
 # debug=False, use_reload=False, host='0.0.0.0', port=5000
