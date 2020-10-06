@@ -1,12 +1,12 @@
 import openpyxl
 from openpyxl import load_workbook
 from data_xl import customer_call, invoice_call, itemsold_call, product_call, loopdahdata_call
-from flask import (Flask, jsonify, render_template)
+from flask import (Flask, jsonify, render_template,send_from_director)
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import json
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='reactAPI/public')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ywlpicmiptrres:f142823196b7ee397d5ba35381b8ece85fd8717e025420f3f338a16466730b9b@ec2-23-23-36-227.compute-1.amazonaws.com:5432/ddmh0o5t51m950'
 CORS(app, supports_credentials=True)
 
@@ -85,26 +85,42 @@ PR=Productlist()
 #   return render_template('main.html', title="Home", content="Hello, World!") 
 
 # get first name
-print("Printing name: ",C.query.all()[0].name)
+# print("Printing name: ",C.query.all()[0].name)
+
+
+# import os
+# from flask import Flask, send_from_directory
+
+# app = Flask(__name__, static_folder='react_app/build')
+
+# # Serve React App
+# @app.route('/', defaults={'path': ''})
+# @app.route('/<path:path>')
+# def serve(path):
+#     if path != "" and os.path.exists(app.static_folder + '/' + path):
+#         return send_from_directory(app.static_folder, path)
+#     else:
+#         return send_from_directory(app.static_folder, 'index.html')
+
+# if __name__ == '__main__':
+#     app.run(use_reloader=True, port=5000, threaded=True)
+
+@app.route("/")
+def main():
+       return render_template('index.html', title="Home", content="Hello, World!") 
+
 
 @app.route('/react')
 def reactPage():
-
-       return render_template('index.js', title="Home")
+       return render_template('index.html', title="Home")
 
 @app.route('/dbtest')
 def dbtest():
-
        return  "hello @@@@@@@@@@@@"
-
-@app.route("/")
-def home():
-       print("hello from print")
-       return 'HOME endpoint // '
 
 @app.route("/index")
 def index():
-       return'<h1>Heroku Deploy local test?<h1>'
+       return'<h1>Heroku SERVER deployment working<h1>'
 
 # @app.route("/index/<string:number_id>")
 # def numberprint(number_id)
@@ -130,85 +146,90 @@ def jsonfromdbprod():
        data = [x.toDict() for x in PR.query.all()]
        return jsonify(data)
 
-
-
-
 @app.route("/json/customer", methods = ['POST','GET'])
 def jsoncustomer():
        data=customer_call()
        print(data)
        return jsonify(data), 200
 
-@app.route("/json/invoice", methods = ['POST','GET'])
-def jsoninvoice():
-       data=invoice_call()
-       print(data)
-       return jsonify(data), 200
-
-@app.route("/json/product", methods = ['POST','GET'])
-def jsonproduct():
-       data=product_call()
-       print(data)
-       return jsonify(data), 200
- 
-@app.route("/json/itemsold", methods = ['POST','GET'])
-def jsonitemsold():
-       data=itemsold_call()
-       # print(data)
-       return jsonify(data), 200
-
-@app.route("/hello/<name>")
-def hello2(name):
-    return render_template("hello.html", name=name)
-
-@app.route('/dump/customer')
-def dumpcustomer():
-     return render_template("dump.html", customer=customer_call())
-
-@app.route('/dump/invoice')
-def dumpinvoice():
-       return render_template("dump.html", customer=invoice_call())
-
-@app.route('/dump/itemsold')
-def dumpitemsold():
-       return render_template("dump.html", customer=itemsold_call())
-
-@app.route('/dump/product')
-def dumpproduct():
-       return render_template("dump.html", customer=product_call())
-
-@app.route('/loop/product')
-def dumploopproduct():
-       data = product_call()
-       app.logger.debug(data)
-       return render_template("loopproduct.html", products=data)
-
-@app.route('/loop/itemsold')
-def dumploopitemsold():
-       data = itemsold_call()
-       app.logger.debug(data)
-       return render_template("loopitemsold.html", itemsold=data)
-
-@app.route('/customer/<id>')
-def customer_info(id):
-       return render_template("single_customer.html", data=Clients.query.filter_by(customer_id=id)[0])
-
-@app.route('/loop/customer')
-def dumploopcustomer():
-       data = list(Clients.query.all())
-       app.logger.debug(data)
-       return render_template("loopcustomer.html", customer=data)
-
-@app.route('/loop/invoice')
-def dumploopinvoice():
-       data = invoice_call()
-       app.logger.debug(data)
-       return render_template("loopinvoice.html", invoice=data)
-
 if __name__ == '__main__':
-              app.run(debug=True, use_reloader=True, host='0.0.0.0', port=5000)
+              app.run(use_reloader=True, port=5000, threaded=True)
+              # app.run(debug=True, use_reloader=True, host='0.0.0.0', port=5000)
+
 # debug=False, use_reload=False, host='0.0.0.0', port=5000
 # setup webhserver to "reverse proxy" to the Flask app
+
+# if __name__ == '__main__':    //https://stackoverflow.com/questions/44209978/serving-a-front-end-created-with-create-react-app-with-flask
+#     app.run(use_reloader=True, port=5000, threaded=True)
+
+
+# @app.route("/json/invoice", methods = ['POST','GET'])
+# def jsoninvoice():
+#        data=invoice_call()
+#        print(data)
+#        return jsonify(data), 200
+
+# @app.route("/json/product", methods = ['POST','GET'])
+# def jsonproduct():
+#        data=product_call()
+#        print(data)
+#        return jsonify(data), 200
+ 
+# @app.route("/json/itemsold", methods = ['POST','GET'])
+# def jsonitemsold():
+#        data=itemsold_call()
+#        # print(data)
+#        return jsonify(data), 200
+
+# @app.route("/hello/<name>")
+# def hello2(name):
+#     return render_template("hello.html", name=name)
+
+# @app.route('/dump/customer')
+# def dumpcustomer():
+#      return render_template("dump.html", customer=customer_call())
+
+# @app.route('/dump/invoice')
+# def dumpinvoice():
+#        return render_template("dump.html", customer=invoice_call())
+
+# @app.route('/dump/itemsold')
+# def dumpitemsold():
+#        return render_template("dump.html", customer=itemsold_call())
+
+# @app.route('/dump/product')
+# def dumpproduct():
+#        return render_template("dump.html", customer=product_call())
+
+# @app.route('/loop/product')
+# def dumploopproduct():
+#        data = product_call()
+#        app.logger.debug(data)
+#        return render_template("loopproduct.html", products=data)
+
+# @app.route('/loop/itemsold')
+# def dumploopitemsold():
+#        data = itemsold_call()
+#        app.logger.debug(data)
+#        return render_template("loopitemsold.html", itemsold=data)
+
+# @app.route('/customer/<id>')
+# def customer_info(id):
+#        return render_template("single_customer.html", data=Clients.query.filter_by(customer_id=id)[0])
+
+# @app.route('/loop/customer')
+# def dumploopcustomer():
+#        data = list(Clients.query.all())
+#        app.logger.debug(data)
+#        return render_template("loopcustomer.html", customer=data)
+
+# @app.route('/loop/invoice')
+# def dumploopinvoice():
+#        data = invoice_call()
+#        app.logger.debug(data)
+#        return render_template("loopinvoice.html", invoice=data)
+
+
  
 
 
