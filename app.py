@@ -146,11 +146,11 @@ def jsonfromdbprod():
        data = [x.toDict() for x in PR.query.all()]
        return jsonify(data)
 
-@app.route("/json/customer", methods = ['POST','GET'])
-def jsoncustomer():
-       data=customer_call()
-       print(data)
-       return jsonify(data), 200
+# @app.route("/json/customer", methods = ['POST','GET'])
+# def jsoncustomer():
+#        data=customer_call()
+#        print(data)
+#        return jsonify(data), 200
 
 if __name__ == '__main__':
               app.run(use_reloader=True, port=5000, threaded=True)
