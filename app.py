@@ -1,10 +1,11 @@
 import openpyxl
 from openpyxl import load_workbook
 from data_xl import customer_call, invoice_call, itemsold_call, product_call, loopdahdata_call
-from flask import (Flask, jsonify, render_template,send_from_director)
+from flask import (Flask, jsonify, render_template)
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import json
+# send_from_director
 
 app = Flask(__name__, static_folder='reactAPI/static')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ywlpicmiptrres:f142823196b7ee397d5ba35381b8ece85fd8717e025420f3f338a16466730b9b@ec2-23-23-36-227.compute-1.amazonaws.com:5432/ddmh0o5t51m950'
@@ -108,7 +109,7 @@ PR=Productlist()
 
 @app.route("/")
 def main():
-       return render_template('index.html', title="Home", content="Hello, World!") 
+       return render_template('index.html', title="Home") 
 
 @app.route('/react')
 def reactPage():
